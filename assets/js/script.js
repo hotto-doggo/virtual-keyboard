@@ -597,12 +597,14 @@ function inputFromKeyboard(event) {
             }
         }
         else if (thisInnerValue === 'ENTER' || thisInnerValue === 'Enter') {
+            event.preventDefault();
             indexInput.value += '\n';
         }
         else if (thisInnerValue === 'Backspace') {
             indexInput.value = indexInput.value.slice(0, indexInput.value.length - 1);
         }
         else if (thisInnerValue === ' ') {
+            event.preventDefault();
             indexInput.value += ' ';
         }
         else if (thisInnerValue === 'Tab') {
@@ -731,4 +733,13 @@ function changeToEng() {
         upperSymbol.innerHTML = buttons[button].key;
         i++;
     }
+}
+
+
+//autoscrolling to the end of the input
+const indexInput = document.getElementsByTagName("textarea");
+document.addEventListener('keyup', resizeInput);
+
+function resizeInput() {
+    indexInput[0].scrollTop = indexInput[0].scrollHeight;
 }
